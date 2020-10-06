@@ -7,15 +7,13 @@
 var getElementsByClassName = function(className
 ) {
   // your code here
-  // create temp array to store elements with class name
+  // create array to store elements with class name
   let result = [];
   let currElement = document.body;
 
   var checkClassName = function (node) {
 
-    // iterate through the DOM structure
     // check if current element has the class name
-
     if (currElement.classList.contains(className)) {
       result = result.concat(currElement);
     }
@@ -24,8 +22,8 @@ var getElementsByClassName = function(className
     if (currElement.children) {
       let children = currElement.children;
 
+    // recurse through the DOM structure
       for (let childElement of children) {
-        //let childElement = children[i];
         currElement = childElement;
 
         checkClassName(currElement);
