@@ -11,24 +11,29 @@ var getElementsByClassName = function(className
   let result = [];
   let currElement = document.body;
 
-  console.log(currElement);
+  var checkClassName = function (node) {
 
-  // iterate through the DOM structure
-  // check if current element has the class name
-  if (currElement.classList.contains(className)) {
-    result.push(currElement);
-  }
+    // iterate through the DOM structure
+    // check if current element has the class name
 
-  // check if it has an element child node
-  if (currElement.children) {
-    let children = currElement.children;
+    if (currElement.classList.contains(className)) {
+      result = result.concat(currElement);
+    }
 
-    for (let i = 0; i < children.length; i++) {
-      currElement = children[i];
-      console.log(currElement);
-      getElementsByClassName(className);
+    // check if it has an element child node
+    if (currElement.children) {
+      let children = currElement.children;
+
+      for (let childElement of children) {
+        //let childElement = children[i];
+        currElement = childElement;
+
+        checkClassName(currElement);
+      }
     }
   }
+
+  checkClassName(currElement);
 
   //return an array of elements with specified class name
   return result;
